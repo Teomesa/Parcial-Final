@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     escena = new QGraphicsScene(this);
-    escena->setSceneRect(0,-330,380,330);
+    escena->setSceneRect(0,-330,495,435);
     escena->addRect(escena->sceneRect());
     ui->graphicsView->setScene(escena);
     timer = new QTimer();
@@ -22,13 +22,19 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pntSimular_clicked()
 {
-    double x=ui->LE_posx->text().toDouble();
-    double y=ui->LE_posy->text().toDouble();
+    double YO=ui->YO->text().toDouble();
+    double YD=ui->YD->text().toDouble();
+    double d=ui->Distance->text().toDouble();
     double v=ui->LE_Vel->text().toDouble();
     double a= ui->LE_angulo->text().toDouble();
     a=(a*3.14159)/180;
-    //cuerpo= new Particula(x,y,v,a);
-    Cuerpos.push_back(new Fisicas(x,y,v,a));
+    canonD.push_back(new canon_def(d,YD));
+    escena->addItem(canonD.back());
+    canonO.push_back(new canon_of(0,YO));
+    escena->addItem(canonO.back());
+    Cuerpos.push_back(new Fisicas(70,YO,v,a));
+    escena->addItem(Cuerpos.back());
+    Cuerpos.push_back(new Fisicas(d,YD,-v,-a));
     escena->addItem(Cuerpos.back());
     timer->start(5);
 }

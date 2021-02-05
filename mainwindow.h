@@ -6,6 +6,9 @@
 #include <QGraphicsScene>
 #include <QTimer>
 #include <QList>
+#include <canon_def.h>
+#include <canon_of.h>
+
 
 namespace Ui {
 class MainWindow;
@@ -27,7 +30,9 @@ private:
     Ui::MainWindow *ui;
     QGraphicsScene *escena;
     QTimer *timer;
-    Fisicas *cuerpo;
+    QList<canon_def *>canonD;
+    QList<canon_of *>canonO;
     QList<Fisicas *>Cuerpos;
+
 };
 #endif // MAINWINDOW_H
